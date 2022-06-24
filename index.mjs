@@ -15,6 +15,7 @@ console.log("Hello, Alice and Bob!");
 console.log("Launching...");
 console.log(`Alice has balance of ${beforeAlice}`);
 console.log(`Bob has balance of ${beforeBob}`);
+
 const ctcAlice = accAlice.contract(backend);
 const ctcBob = accBob.contract(backend, ctcAlice.getInfo());
 
@@ -35,13 +36,13 @@ const Player = (who) => ({
 });
 
 await Promise.all([
-  backend.Alice(ctcAlice, {
+  ctcAlice.p.Alice({
     // ...stdlib.hasRandom,
     ...Player("Alice"),
-    wager: stdlib.parseCurrency(50),
+    wager: stdlib.parseCurrency(5),
     // implement Alice's interact object here
   }),
-  backend.Bob(ctcBob, {
+  ctcBob.p.Bob({
     // ...stdlib.hasRandom,
     ...Player("Bob"),
     acceptWager: (amt) => {

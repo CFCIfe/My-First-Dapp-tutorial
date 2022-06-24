@@ -3,9 +3,10 @@
 const [isHand, ROCK, PAPER, SCISSORS] = makeEnum(3);
 const [isOutcome, B_WINS, DRAW, A_WINS] = makeEnum(3);
 
-const winner = (handAlice, handBob) => {
+const winner = (handAlice, handBob) =>
+  //prettier-ignore
   (handAlice + (4 - handBob)) % 3;
-};
+
 assert(winner(ROCK, PAPER) == B_WINS);
 assert(winner(PAPER, ROCK) == A_WINS);
 assert(winner(ROCK, ROCK) == DRAW);
@@ -33,6 +34,7 @@ export const main = Reach.App(() => {
     ...Player,
     acceptWager: Fun([UInt], Null),
   });
+
   init();
   // The first one to publish deploys the contract
   Alice.only(() => {
@@ -63,15 +65,15 @@ export const main = Reach.App(() => {
   Alice.publish(saltAlice, handAlice);
   checkCommitment(commitAlice, saltAlice, handAlice);
 
-  const outcome = (handAlice + (4 - handBob)) % 3;
+  const outcome = winner(handAlice, handBob);
   const [forAlice, forBob] =
-    outcome == 2 ? [1, 0] : outcome == 0 ? [0, 2] : [1, 1];
+    outcome == A_WINS ? [2, 0] : outcome == B_WINS ? [0, 2] : [1, 1];
   transfer(forAlice * wager).to(Alice);
   transfer(forBob * wager).to(Bob);
+  commit();
 
   each([Alice, Bob], () => {
     interact.seeOutcome(outcome);
   });
-  // write your program here
   exit();
 });
