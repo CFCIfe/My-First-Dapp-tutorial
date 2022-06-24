@@ -1,47 +1,53 @@
 // Automatically generated with Reach 0.1.11 (f1ffa756)
 /* eslint-disable */
-export const _version = '0.1.11';
-export const _versionHash = '0.1.11 (f1ffa756)';
-export const _backendVersion = 17;
+export const _version = "0.1";
+export const _versionHash = "0.1 (f1ffa756)";
+export const _backendVersion = 16;
 
 export function getExports(s) {
   const stdlib = s.reachStdlib;
-  return {
-    };
-  };
+  return {};
+}
 export function _getEvents(s) {
   const stdlib = s.reachStdlib;
-  return {
-    };
-  };
+  return {};
+}
 export function _getViews(s, viewlib) {
   const stdlib = s.reachStdlib;
   const ctc0 = stdlib.T_Address;
   const ctc1 = stdlib.T_UInt;
   const ctc2 = stdlib.T_Digest;
-  
+
   return {
-    infos: {
-      },
+    infos: {},
     views: {
       1: [ctc0, ctc1, ctc2],
-      2: [ctc0, ctc1, ctc2, ctc0, ctc1]
-      }
-    };
-  
+      2: [ctc0, ctc1, ctc2, ctc0, ctc1],
+    },
   };
+}
 export function _getMaps(s) {
   const stdlib = s.reachStdlib;
   const ctc0 = stdlib.T_Tuple([]);
   return {
-    mapDataTy: ctc0
-    };
+    mapDataTy: ctc0,
   };
+}
 export async function Alice(ctcTop, interact) {
-  if (typeof(ctcTop) !== 'object' || ctcTop._initialize === undefined) {
-    return Promise.reject(new Error(`The backend for Alice expects to receive a contract as its first argument.`));}
-  if (typeof(interact) !== 'object') {
-    return Promise.reject(new Error(`The backend for Alice expects to receive an interact object as its second argument.`));}
+  if (typeof ctcTop !== "object" || ctcTop._initialize === undefined) {
+    return Promise.reject(
+      new Error(
+        `The backend for Alice expects to receive a contract as its first argument.`
+      )
+    );
+  }
+  if (typeof interact !== "object") {
+    return Promise.reject(
+      new Error(
+        `The backend for Alice expects to receive an interact object as its second argument.`
+      )
+    );
+  }
   const ctc = ctcTop._initialize();
   const stdlib = ctc.stdlib;
   const ctc0 = stdlib.T_UInt;
@@ -49,173 +55,302 @@ export async function Alice(ctcTop, interact) {
   const ctc2 = stdlib.T_Digest;
   const ctc3 = stdlib.T_Null;
   const ctc4 = stdlib.T_Address;
-  
-  
-  const v137 = stdlib.protect(ctc0, interact.wager, 'for Alice\'s interact field wager');
-  
+
+  const v137 = stdlib.protect(
+    ctc0,
+    interact.wager,
+    "for Alice's interact field wager"
+  );
+
   const v140 = stdlib.protect(ctc0, await interact.getHand(), {
-    at: './index.rsh:42:40:application',
-    fs: ['at ./index.rsh:40:13:application call to [unknown function] (defined at: ./index.rsh:40:17:function exp)'],
-    msg: 'getHand',
-    who: 'Alice'
-    });
+    at: "./index.rsh:42:40:application",
+    fs: [
+      "at ./index.rsh:40:13:application call to [unknown function] (defined at: ./index.rsh:40:17:function exp)",
+    ],
+    msg: "getHand",
+    who: "Alice",
+  });
   const v141 = stdlib.protect(ctc0, await interact.random(), {
-    at: 'reach standard library:64:31:application',
-    fs: ['at ./index.rsh:43:54:application call to "makeCommitment" (defined at: reach standard library:63:8:function exp)', 'at ./index.rsh:40:13:application call to [unknown function] (defined at: ./index.rsh:40:17:function exp)'],
-    msg: 'random',
-    who: 'Alice'
-    });
+    at: "reach standard library:64:31:application",
+    fs: [
+      'at ./index.rsh:43:54:application call to "makeCommitment" (defined at: reach standard library:63:8:function exp)',
+      "at ./index.rsh:40:13:application call to [unknown function] (defined at: ./index.rsh:40:17:function exp)",
+    ],
+    msg: "random",
+    who: "Alice",
+  });
   const v142 = stdlib.digest(ctc1, [v141, v140]);
-  
-  const txn1 = await (ctc.sendrecv({
+
+  const txn1 = await ctc.sendrecv({
     args: [v137, v142],
     evt_cnt: 2,
     funcNum: 0,
-    lct: stdlib.checkedBigNumberify('./index.rsh:47:9:dot', stdlib.UInt_max, '0'),
+    lct: stdlib.checkedBigNumberify(
+      "./index.rsh:47:9:dot",
+      stdlib.UInt_max,
+      "0"
+    ),
     onlyIf: true,
     out_tys: [ctc0, ctc2],
     pay: [v137, []],
-    sim_p: (async (txn1) => {
+    sim_p: async (txn1) => {
       const sim_r = { txns: [], mapRefs: [], maps: [] };
       let sim_txn_ctr = stdlib.UInt_max;
-      const getSimTokCtr = () => { sim_txn_ctr = sim_txn_ctr.sub(1); return sim_txn_ctr; };
-      
-      
-      const {data: [v145, v146], secs: v148, time: v147, didSend: v60, from: v144 } = txn1;
-      
+      const getSimTokCtr = () => {
+        sim_txn_ctr = sim_txn_ctr.sub(1);
+        return sim_txn_ctr;
+      };
+
+      const {
+        data: [v145, v146],
+        secs: v148,
+        time: v147,
+        didSend: v60,
+        from: v144,
+      } = txn1;
+
       sim_r.txns.push({
         amt: v145,
-        kind: 'to',
-        tok: undefined /* Nothing */
-        });
+        kind: "to",
+        tok: undefined /* Nothing */,
+      });
       sim_r.isHalt = false;
-      
+
       return sim_r;
-      }),
+    },
     soloSend: true,
     timeoutAt: undefined /* mto */,
     tys: [ctc0, ctc2],
-    waitIfNotPresent: false
-    }));
-  const {data: [v145, v146], secs: v148, time: v147, didSend: v60, from: v144 } = txn1;
-  ;
-  const txn2 = await (ctc.recv({
+    waitIfNotPresent: false,
+  });
+  const {
+    data: [v145, v146],
+    secs: v148,
+    time: v147,
+    didSend: v60,
+    from: v144,
+  } = txn1;
+  const txn2 = await ctc.recv({
     didSend: false,
     evt_cnt: 1,
     funcNum: 1,
     out_tys: [ctc0],
     timeoutAt: undefined /* mto */,
-    waitIfNotPresent: false
-    }));
-  const {data: [v155], secs: v157, time: v156, didSend: v71, from: v154 } = txn2;
-  ;
-  const txn3 = await (ctc.sendrecv({
+    waitIfNotPresent: false,
+  });
+  const {
+    data: [v155],
+    secs: v157,
+    time: v156,
+    didSend: v71,
+    from: v154,
+  } = txn2;
+  const txn3 = await ctc.sendrecv({
     args: [v144, v145, v146, v154, v155, v141, v140],
     evt_cnt: 2,
     funcNum: 2,
     lct: v156,
     onlyIf: true,
     out_tys: [ctc0, ctc0],
-    pay: [stdlib.checkedBigNumberify('./index.rsh:65:9:decimal', stdlib.UInt_max, '0'), []],
-    sim_p: (async (txn3) => {
+    pay: [
+      stdlib.checkedBigNumberify(
+        "./index.rsh:65:9:decimal",
+        stdlib.UInt_max,
+        "0"
+      ),
+      [],
+    ],
+    sim_p: async (txn3) => {
       const sim_r = { txns: [], mapRefs: [], maps: [] };
       let sim_txn_ctr = stdlib.UInt_max;
-      const getSimTokCtr = () => { sim_txn_ctr = sim_txn_ctr.sub(1); return sim_txn_ctr; };
-      
-      
-      const {data: [v163, v164], secs: v166, time: v165, didSend: v81, from: v162 } = txn3;
-      
-      ;
-      const v170 = stdlib.sub(stdlib.checkedBigNumberify('./index.rsh:8:17:decimal', stdlib.UInt_max, '4'), v155);
+      const getSimTokCtr = () => {
+        sim_txn_ctr = sim_txn_ctr.sub(1);
+        return sim_txn_ctr;
+      };
+
+      const {
+        data: [v163, v164],
+        secs: v166,
+        time: v165,
+        didSend: v81,
+        from: v162,
+      } = txn3;
+
+      const v170 = stdlib.sub(
+        stdlib.checkedBigNumberify(
+          "./index.rsh:8:17:decimal",
+          stdlib.UInt_max,
+          "4"
+        ),
+        v155
+      );
       const v171 = stdlib.add(v164, v170);
-      const v172 = stdlib.mod(v171, stdlib.checkedBigNumberify('./index.rsh:8:33:decimal', stdlib.UInt_max, '3'));
-      const v173 = stdlib.eq(v172, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, '2'));
-      const v174 = stdlib.eq(v172, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, '0'));
-      const v175 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '2')];
-      const v176 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '1'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '1')];
+      const v172 = stdlib.mod(
+        v171,
+        stdlib.checkedBigNumberify(
+          "./index.rsh:8:33:decimal",
+          stdlib.UInt_max,
+          "3"
+        )
+      );
+      const v173 = stdlib.eq(
+        v172,
+        stdlib.checkedBigNumberify("./index.rsh:makeEnum", stdlib.UInt_max, "2")
+      );
+      const v174 = stdlib.eq(
+        v172,
+        stdlib.checkedBigNumberify("./index.rsh:makeEnum", stdlib.UInt_max, "0")
+      );
+      const v175 = [
+        stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "0"),
+        stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "2"),
+      ];
+      const v176 = [
+        stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "1"),
+        stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "1"),
+      ];
       const v177 = v174 ? v175 : v176;
-      const v178 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '2'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0')];
+      const v178 = [
+        stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "2"),
+        stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "0"),
+      ];
       const v179 = v173 ? v178 : v177;
-      const v180 = v179[stdlib.checkedBigNumberify('./index.rsh:69:9:array', stdlib.UInt_max, '0')];
-      const v181 = v179[stdlib.checkedBigNumberify('./index.rsh:69:9:array', stdlib.UInt_max, '1')];
+      const v180 =
+        v179[
+          stdlib.checkedBigNumberify(
+            "./index.rsh:69:9:array",
+            stdlib.UInt_max,
+            "0"
+          )
+        ];
+      const v181 =
+        v179[
+          stdlib.checkedBigNumberify(
+            "./index.rsh:69:9:array",
+            stdlib.UInt_max,
+            "1"
+          )
+        ];
       const v182 = stdlib.mul(v180, v145);
       sim_r.txns.push({
-        kind: 'from',
+        kind: "from",
         to: v144,
-        tok: undefined /* Nothing */
-        });
+        tok: undefined /* Nothing */,
+      });
       const v187 = stdlib.mul(v181, v145);
       sim_r.txns.push({
-        kind: 'from',
+        kind: "from",
         to: v154,
-        tok: undefined /* Nothing */
-        });
+        tok: undefined /* Nothing */,
+      });
       sim_r.txns.push({
-        kind: 'halt',
-        tok: undefined /* Nothing */
-        })
+        kind: "halt",
+        tok: undefined /* Nothing */,
+      });
       sim_r.isHalt = true;
-      
+
       return sim_r;
-      }),
+    },
     soloSend: true,
     timeoutAt: undefined /* mto */,
     tys: [ctc4, ctc0, ctc2, ctc4, ctc0, ctc0, ctc0],
-    waitIfNotPresent: false
-    }));
-  const {data: [v163, v164], secs: v166, time: v165, didSend: v81, from: v162 } = txn3;
-  ;
+    waitIfNotPresent: false,
+  });
+  const {
+    data: [v163, v164],
+    secs: v166,
+    time: v165,
+    didSend: v81,
+    from: v162,
+  } = txn3;
   const v167 = stdlib.addressEq(v144, v162);
   stdlib.assert(v167, {
-    at: './index.rsh:65:9:dot',
+    at: "./index.rsh:65:9:dot",
     fs: [],
-    msg: 'sender correct',
-    who: 'Alice'
-    });
+    msg: "sender correct",
+    who: "Alice",
+  });
   const v168 = stdlib.digest(ctc1, [v163, v164]);
   const v169 = stdlib.digestEq(v146, v168);
   stdlib.assert(v169, {
-    at: 'reach standard library:69:17:application',
-    fs: ['at ./index.rsh:66:18:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)'],
+    at: "reach standard library:69:17:application",
+    fs: [
+      'at ./index.rsh:66:18:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)',
+    ],
     msg: null,
-    who: 'Alice'
-    });
-  const v170 = stdlib.sub(stdlib.checkedBigNumberify('./index.rsh:8:17:decimal', stdlib.UInt_max, '4'), v155);
+    who: "Alice",
+  });
+  const v170 = stdlib.sub(
+    stdlib.checkedBigNumberify(
+      "./index.rsh:8:17:decimal",
+      stdlib.UInt_max,
+      "4"
+    ),
+    v155
+  );
   const v171 = stdlib.add(v164, v170);
-  const v172 = stdlib.mod(v171, stdlib.checkedBigNumberify('./index.rsh:8:33:decimal', stdlib.UInt_max, '3'));
-  const v173 = stdlib.eq(v172, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, '2'));
-  const v174 = stdlib.eq(v172, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, '0'));
-  const v175 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '2')];
-  const v176 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '1'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '1')];
+  const v172 = stdlib.mod(
+    v171,
+    stdlib.checkedBigNumberify("./index.rsh:8:33:decimal", stdlib.UInt_max, "3")
+  );
+  const v173 = stdlib.eq(
+    v172,
+    stdlib.checkedBigNumberify("./index.rsh:makeEnum", stdlib.UInt_max, "2")
+  );
+  const v174 = stdlib.eq(
+    v172,
+    stdlib.checkedBigNumberify("./index.rsh:makeEnum", stdlib.UInt_max, "0")
+  );
+  const v175 = [
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "0"),
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "2"),
+  ];
+  const v176 = [
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "1"),
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "1"),
+  ];
   const v177 = v174 ? v175 : v176;
-  const v178 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '2'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0')];
+  const v178 = [
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "2"),
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "0"),
+  ];
   const v179 = v173 ? v178 : v177;
-  const v180 = v179[stdlib.checkedBigNumberify('./index.rsh:69:9:array', stdlib.UInt_max, '0')];
-  const v181 = v179[stdlib.checkedBigNumberify('./index.rsh:69:9:array', stdlib.UInt_max, '1')];
+  const v180 =
+    v179[
+      stdlib.checkedBigNumberify("./index.rsh:69:9:array", stdlib.UInt_max, "0")
+    ];
+  const v181 =
+    v179[
+      stdlib.checkedBigNumberify("./index.rsh:69:9:array", stdlib.UInt_max, "1")
+    ];
   const v182 = stdlib.mul(v180, v145);
-  ;
   const v187 = stdlib.mul(v181, v145);
-  ;
   stdlib.protect(ctc3, await interact.seeOutcome(v172), {
-    at: './index.rsh:76:24:application',
-    fs: ['at ./index.rsh:75:7:application call to [unknown function] (defined at: ./index.rsh:75:25:function exp)'],
-    msg: 'seeOutcome',
-    who: 'Alice'
-    });
-  
+    at: "./index.rsh:76:24:application",
+    fs: [
+      "at ./index.rsh:75:7:application call to [unknown function] (defined at: ./index.rsh:75:25:function exp)",
+    ],
+    msg: "seeOutcome",
+    who: "Alice",
+  });
+
   return;
-  
-  
-  
-  
-  
-  
-  };
+}
 export async function Bob(ctcTop, interact) {
-  if (typeof(ctcTop) !== 'object' || ctcTop._initialize === undefined) {
-    return Promise.reject(new Error(`The backend for Bob expects to receive a contract as its first argument.`));}
-  if (typeof(interact) !== 'object') {
-    return Promise.reject(new Error(`The backend for Bob expects to receive an interact object as its second argument.`));}
+  if (typeof ctcTop !== "object" || ctcTop._initialize === undefined) {
+    return Promise.reject(
+      new Error(
+        `The backend for Bob expects to receive a contract as its first argument.`
+      )
+    );
+  }
+  if (typeof interact !== "object") {
+    return Promise.reject(
+      new Error(
+        `The backend for Bob expects to receive an interact object as its second argument.`
+      )
+    );
+  }
   const ctc = ctcTop._initialize();
   const stdlib = ctc.stdlib;
   const ctc0 = stdlib.T_UInt;
@@ -223,32 +358,40 @@ export async function Bob(ctcTop, interact) {
   const ctc2 = stdlib.T_Null;
   const ctc3 = stdlib.T_Tuple([ctc0, ctc0]);
   const ctc4 = stdlib.T_Address;
-  
-  
-  const txn1 = await (ctc.recv({
+
+  const txn1 = await ctc.recv({
     didSend: false,
     evt_cnt: 2,
     funcNum: 0,
     out_tys: [ctc0, ctc1],
     timeoutAt: undefined /* mto */,
-    waitIfNotPresent: false
-    }));
-  const {data: [v145, v146], secs: v148, time: v147, didSend: v60, from: v144 } = txn1;
-  ;
+    waitIfNotPresent: false,
+  });
+  const {
+    data: [v145, v146],
+    secs: v148,
+    time: v147,
+    didSend: v60,
+    from: v144,
+  } = txn1;
   stdlib.protect(ctc2, await interact.acceptWager(v145), {
-    at: './index.rsh:54:25:application',
-    fs: ['at ./index.rsh:53:11:application call to [unknown function] (defined at: ./index.rsh:53:15:function exp)'],
-    msg: 'acceptWager',
-    who: 'Bob'
-    });
+    at: "./index.rsh:54:25:application",
+    fs: [
+      "at ./index.rsh:53:11:application call to [unknown function] (defined at: ./index.rsh:53:15:function exp)",
+    ],
+    msg: "acceptWager",
+    who: "Bob",
+  });
   const v153 = stdlib.protect(ctc0, await interact.getHand(), {
-    at: './index.rsh:55:48:application',
-    fs: ['at ./index.rsh:53:11:application call to [unknown function] (defined at: ./index.rsh:53:15:function exp)'],
-    msg: 'getHand',
-    who: 'Bob'
-    });
-  
-  const txn2 = await (ctc.sendrecv({
+    at: "./index.rsh:55:48:application",
+    fs: [
+      "at ./index.rsh:53:11:application call to [unknown function] (defined at: ./index.rsh:53:15:function exp)",
+    ],
+    msg: "getHand",
+    who: "Bob",
+  });
+
+  const txn2 = await ctc.sendrecv({
     args: [v144, v145, v146, v153],
     evt_cnt: 1,
     funcNum: 1,
@@ -256,92 +399,137 @@ export async function Bob(ctcTop, interact) {
     onlyIf: true,
     out_tys: [ctc0],
     pay: [v145, []],
-    sim_p: (async (txn2) => {
+    sim_p: async (txn2) => {
       const sim_r = { txns: [], mapRefs: [], maps: [] };
       let sim_txn_ctr = stdlib.UInt_max;
-      const getSimTokCtr = () => { sim_txn_ctr = sim_txn_ctr.sub(1); return sim_txn_ctr; };
-      
-      
-      const {data: [v155], secs: v157, time: v156, didSend: v71, from: v154 } = txn2;
-      
+      const getSimTokCtr = () => {
+        sim_txn_ctr = sim_txn_ctr.sub(1);
+        return sim_txn_ctr;
+      };
+
+      const {
+        data: [v155],
+        secs: v157,
+        time: v156,
+        didSend: v71,
+        from: v154,
+      } = txn2;
+
       sim_r.txns.push({
         amt: v145,
-        kind: 'to',
-        tok: undefined /* Nothing */
-        });
+        kind: "to",
+        tok: undefined /* Nothing */,
+      });
       sim_r.isHalt = false;
-      
+
       return sim_r;
-      }),
+    },
     soloSend: true,
     timeoutAt: undefined /* mto */,
     tys: [ctc4, ctc0, ctc1, ctc0],
-    waitIfNotPresent: false
-    }));
-  const {data: [v155], secs: v157, time: v156, didSend: v71, from: v154 } = txn2;
-  ;
-  const txn3 = await (ctc.recv({
+    waitIfNotPresent: false,
+  });
+  const {
+    data: [v155],
+    secs: v157,
+    time: v156,
+    didSend: v71,
+    from: v154,
+  } = txn2;
+  const txn3 = await ctc.recv({
     didSend: false,
     evt_cnt: 2,
     funcNum: 2,
     out_tys: [ctc0, ctc0],
     timeoutAt: undefined /* mto */,
-    waitIfNotPresent: false
-    }));
-  const {data: [v163, v164], secs: v166, time: v165, didSend: v81, from: v162 } = txn3;
-  ;
+    waitIfNotPresent: false,
+  });
+  const {
+    data: [v163, v164],
+    secs: v166,
+    time: v165,
+    didSend: v81,
+    from: v162,
+  } = txn3;
   const v167 = stdlib.addressEq(v144, v162);
   stdlib.assert(v167, {
-    at: './index.rsh:65:9:dot',
+    at: "./index.rsh:65:9:dot",
     fs: [],
-    msg: 'sender correct',
-    who: 'Bob'
-    });
+    msg: "sender correct",
+    who: "Bob",
+  });
   const v168 = stdlib.digest(ctc3, [v163, v164]);
   const v169 = stdlib.digestEq(v146, v168);
   stdlib.assert(v169, {
-    at: 'reach standard library:69:17:application',
-    fs: ['at ./index.rsh:66:18:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)'],
+    at: "reach standard library:69:17:application",
+    fs: [
+      'at ./index.rsh:66:18:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)',
+    ],
     msg: null,
-    who: 'Bob'
-    });
-  const v170 = stdlib.sub(stdlib.checkedBigNumberify('./index.rsh:8:17:decimal', stdlib.UInt_max, '4'), v155);
+    who: "Bob",
+  });
+  const v170 = stdlib.sub(
+    stdlib.checkedBigNumberify(
+      "./index.rsh:8:17:decimal",
+      stdlib.UInt_max,
+      "4"
+    ),
+    v155
+  );
   const v171 = stdlib.add(v164, v170);
-  const v172 = stdlib.mod(v171, stdlib.checkedBigNumberify('./index.rsh:8:33:decimal', stdlib.UInt_max, '3'));
-  const v173 = stdlib.eq(v172, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, '2'));
-  const v174 = stdlib.eq(v172, stdlib.checkedBigNumberify('./index.rsh:makeEnum', stdlib.UInt_max, '0'));
-  const v175 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '2')];
-  const v176 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '1'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '1')];
+  const v172 = stdlib.mod(
+    v171,
+    stdlib.checkedBigNumberify("./index.rsh:8:33:decimal", stdlib.UInt_max, "3")
+  );
+  const v173 = stdlib.eq(
+    v172,
+    stdlib.checkedBigNumberify("./index.rsh:makeEnum", stdlib.UInt_max, "2")
+  );
+  const v174 = stdlib.eq(
+    v172,
+    stdlib.checkedBigNumberify("./index.rsh:makeEnum", stdlib.UInt_max, "0")
+  );
+  const v175 = [
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "0"),
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "2"),
+  ];
+  const v176 = [
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "1"),
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "1"),
+  ];
   const v177 = v174 ? v175 : v176;
-  const v178 = [stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '2'), stdlib.checkedBigNumberify('<builtin>', stdlib.UInt_max, '0')];
+  const v178 = [
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "2"),
+    stdlib.checkedBigNumberify("<builtin>", stdlib.UInt_max, "0"),
+  ];
   const v179 = v173 ? v178 : v177;
-  const v180 = v179[stdlib.checkedBigNumberify('./index.rsh:69:9:array', stdlib.UInt_max, '0')];
-  const v181 = v179[stdlib.checkedBigNumberify('./index.rsh:69:9:array', stdlib.UInt_max, '1')];
+  const v180 =
+    v179[
+      stdlib.checkedBigNumberify("./index.rsh:69:9:array", stdlib.UInt_max, "0")
+    ];
+  const v181 =
+    v179[
+      stdlib.checkedBigNumberify("./index.rsh:69:9:array", stdlib.UInt_max, "1")
+    ];
   const v182 = stdlib.mul(v180, v145);
-  ;
   const v187 = stdlib.mul(v181, v145);
-  ;
   stdlib.protect(ctc2, await interact.seeOutcome(v172), {
-    at: './index.rsh:76:24:application',
-    fs: ['at ./index.rsh:75:7:application call to [unknown function] (defined at: ./index.rsh:75:25:function exp)'],
-    msg: 'seeOutcome',
-    who: 'Bob'
-    });
-  
+    at: "./index.rsh:76:24:application",
+    fs: [
+      "at ./index.rsh:75:7:application call to [unknown function] (defined at: ./index.rsh:75:25:function exp)",
+    ],
+    msg: "seeOutcome",
+    who: "Bob",
+  });
+
   return;
-  
-  
-  
-  
-  
-  
-  };
+}
 const _ALGO = {
   ABI: {
     impure: [],
     pure: [],
-    sigs: []
-    },
+    sigs: [],
+  },
   appApproval: `BiAFAAECCCAmAgEAACI1ADEYQQIKKWRJIls1ASVbNQI2GgAXSUEAByI1BCM1BgA2GgIXNQQ2GgM2GgEXSSMMQAE6SSQMQADVJBJEJDQBEkQ0BEkiEkw0AhIRRChkSTUDSVcAIDX/IQRbNf5JNQVJIls1/SVbNfyABPMtCgw0/RZQNPwWULA0/zEAEkQ0A1coIDT9FjT8FlABEkQ0/IEENAOBaFsJCIEDGDX7gBAAAAAAAAAAAQAAAAAAAAABgBAAAAAAAAAAAAAAAAAAAAACNPsiEk2AEAAAAAAAAAACAAAAAAAAAAA0+yQSTTX6sSKyATT6Ils0/guyCCOyEDT/sgezsSKyATT6JVs0/guyCCOyEDQDV0ggsgezQgCySCM0ARJENARJIhJMNAISEUQoZEk1A0lJVwAgNf8hBFs1/lcoIDX9STUFFzX8gATVFRkUNPwWULA0/ogA4jT/NP4WUDT9UDEAUDT8FlAoSwFXAHBnSCQ1ATIGNQJCAG9IgaCNBogAuCI0ARJENARJIhJMNAISEURJNQVJIls1/1cIIDX+gAS03vNWNP8WUDT+ULA0/4gAiDEANP8WUDT+UChLAVcASGdIIzUBMgY1AkIAHDEZgQUSRLEisgEisggjshAyCbIJMgqyB7NCAAUxGSISRCk0ARY0AhZQZzQGQQAKgAQVH3x1NAdQsDQASSMIMgQSRDEWEkQjQzEZIhJEQv/fIjE0EkQkMTUSRCIxNhJEIjE3EkQiNQEiNQJC/680AElKIwg1ADgHMgoSRDgQIxJEOAgSRIk=`,
   appClear: `Bg==`,
   companionInfo: null,
@@ -352,8 +540,8 @@ const _ALGO = {
   stateSize: 112,
   unsupported: [],
   version: 10,
-  warnings: []
-  };
+  warnings: [],
+};
 const _ETH = {
   ABI: `[
   {
@@ -652,36 +840,34 @@ const _ETH = {
   BytecodeLen: 3445,
   Which: `oD`,
   version: 7,
-  views: {
-    }
-  };
+  views: {},
+};
 export const _stateSourceMap = {
   1: {
-    at: './index.rsh:49:11:after expr stmt semicolon',
+    at: "./index.rsh:49:11:after expr stmt semicolon",
     fs: [],
     msg: null,
-    who: 'Module'
-    },
+    who: "Module",
+  },
   2: {
-    at: './index.rsh:58:11:after expr stmt semicolon',
+    at: "./index.rsh:58:11:after expr stmt semicolon",
     fs: [],
     msg: null,
-    who: 'Module'
-    },
+    who: "Module",
+  },
   3: {
-    at: './index.rsh:73:11:after expr stmt semicolon',
+    at: "./index.rsh:73:11:after expr stmt semicolon",
     fs: [],
     msg: null,
-    who: 'Module'
-    }
-  };
+    who: "Module",
+  },
+};
 export const _Connectors = {
   ALGO: _ALGO,
-  ETH: _ETH
-  };
+  ETH: _ETH,
+};
 export const _Participants = {
-  "Alice": Alice,
-  "Bob": Bob
-  };
-export const _APIs = {
-  };
+  Alice: Alice,
+  Bob: Bob,
+};
+export const _APIs = {};
