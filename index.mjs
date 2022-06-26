@@ -15,12 +15,11 @@ const createAcc = await ask.ask(
 if (createAcc) {
   acc = await stdlib.newTestAccount(stdlib.parseCurrency(1000));
 } else {
-  const secret = await ask.ask(`What us your account secret?`, (x) => x);
+  const secret = await ask.ask(`What is your account secret?`, (x) => x);
   acc = await stdlib.newAccountFromSecret(secret);
 }
 
 let ctc = null;
-
 if (isAlice) {
   ctc = acc.contract(backend);
   ctc.getInfo().then((info) => {
@@ -41,7 +40,6 @@ const before = await getBalance();
 console.log(`Your balance is ${before}`);
 
 const interact = { ...stdlib.hasRandom };
-
 interact.informTimeout = () => {
   console.log(`There was a timeout`);
   process.exit(1);
@@ -67,16 +65,17 @@ if (isAlice) {
 }
 
 const HAND = ["Rock", "Paper", "Scissors"];
+// prettier-ignore
 const HANDS = {
-  Rock: 0,
-  R: 0,
-  r: 0,
-  Paper: 1,
-  P: 1,
-  p: 1,
-  Scissors: 2,
-  S: 2,
-  s: 2,
+  'Rock': 0,
+  'R': 0,
+  'r': 0,
+  'Paper': 1,
+  'P': 1,
+  'p': 1,
+  'Scissors': 2,
+  'S': 2,
+  's': 2,
 };
 
 interact.getHand = async () => {

@@ -47,33 +47,30 @@ export const main = Reach.App(() => {
     const wager = declassify(interact.wager);
     const deadline = declassify(interact.deadline);
   });
-
   Alice.publish(wager, deadline).pay(wager);
-
   commit();
 
   // The second one to publish always attaches
   Bob.only(() => {
     interact.acceptWager(wager);
-    // const handBob = declassify(interact.getHand());
   });
   Bob.pay(wager).timeout(relativeTime(deadline), () =>
     closeTo(Alice, informTimeout)
   );
+
   var outcome = DRAW;
   invariant(balance() == 2 * wager && isOutcome(outcome));
   while (outcome == DRAW) {
     commit();
+
     Alice.only(() => {
       const _handAlice = interact.getHand();
       const [_commitAlice, _saltAlice] = makeCommitment(interact, _handAlice);
       const commitAlice = declassify(_commitAlice);
     });
-
     Alice.publish(commitAlice).timeout(relativeTime(deadline), () =>
       closeTo(Bob, informTimeout)
     );
-
     commit();
 
     unknowable(Bob, Alice(_handAlice, _saltAlice));
@@ -84,6 +81,7 @@ export const main = Reach.App(() => {
       closeTo(Alice, informTimeout)
     );
     commit();
+
     Alice.only(() => {
       const saltAlice = declassify(_saltAlice);
       const handAlice = declassify(_handAlice);
