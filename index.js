@@ -52,7 +52,6 @@ class Player extends React.Component {
     return reach.hasRandom.random();
   }
   async getHand() {
-    // Fun([], UInt)
     const hand = await new Promise((resolveHandP) => {
       this.setState({ view: "GetHand", playable: true, resolveHandP });
     });

@@ -102,5 +102,4 @@ export const main = Reach.App(() => {
   each([Alice, Bob], () => {
     interact.seeOutcome(outcome);
   });
-  exit();
 });
